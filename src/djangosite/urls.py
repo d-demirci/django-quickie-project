@@ -27,8 +27,8 @@ if settings.DEBUG:
 ### Root and other important URLs
 urlpatterns += patterns('',
     # replace the root URL with other views if you want anything other than the semistatic page
-    url(r'^$', 'semistatic.views.page', name='view_page', kwargs={'directory': '',
-                                                                  'page': 'index'}),
+    url(r'^$', 'semistatic.views.page', name='homepage', kwargs={'directory': '',
+                                                                 'page': 'index'}),
     ## Example:
     # (r'^foo/', include('djangosite.foo.urls')),
 )
@@ -37,7 +37,7 @@ urlpatterns += patterns('',
 ### Fall back to semistatic pages
 urlpatterns += patterns('',
     # install up to two levels
-    url(r'^(?P<directory>\w+)/(?P<page>\w+)/$', 'semistatic.views.page', name='view_page'),
+    url(r'^(?P<directory>\w+)/(?P<page>\w+)/$', 'semistatic.views.page', name='view_page_sub'),
     url(r'^(?P<page>\w+)/$', 'semistatic.views.page', name='view_page', kwargs={'directory': ''}),
 )
 

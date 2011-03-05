@@ -4,7 +4,7 @@ import sys
 if DEBUG:
     INSTALLED_APPS += (
         'debug_toolbar',
-        'devserver',
+        #'devserver',
     )
 
     DEBUG_TOOLBAR_CONFIG = {
