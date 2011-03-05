@@ -1,7 +1,7 @@
 # Django settings for djangosite project.
 import sys, os
 
-PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 # add apps
 sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
@@ -52,17 +52,18 @@ USE_L10N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.abspath(os.path.join(PROJECT_ROOT, 'media')) + os.path.sep
+print MEDIA_ROOT
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/media/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+ADMIN_MEDIA_PREFIX = '/admin_media'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'PLEASE GENERATE ONE'
@@ -88,7 +89,16 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.join(PROJECT_ROOT, 'templates'),
 )
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.debug',
+    'django.core.context_processors.auth',
+    'django.core.context_processors.media',
+    'django.core.context_processors.request',
+)
+
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -96,6 +106,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    # Uncomment the next line to enable the admin:
+    # Uncomment the next line to enable the admin (and admindocs):
     # 'django.contrib.admin',
+    # 'django.contrib.admindocs',
+
+    'semistatic',
 )
