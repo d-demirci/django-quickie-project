@@ -1,0 +1,26 @@
+#!/bin/sh
+
+if [ "x$BASH_SOURCE" != "x" ]; then
+	d=`dirname $BASH_SOURCE`
+else
+	d=`dirname $0`
+fi
+
+
+PROJ_BASE=`(cd "$d"; pwd)`
+export PROJ_BASE
+
+LABEL=`(basename "$PROJ_BASE")`
+
+PATH=$PROJ_BASE/bin:$PATH
+export PATH
+
+. $PROJ_BASE/venv/bin/activate
+
+PYTHONPATH=$PROJ_BASE/src
+
+PS1="[$LABEL]"`echo $PS1 | sed -e 's/^(venv)//'`" "
+
+if [ "x$1" != "x" ]; then
+	exec $*
+fi

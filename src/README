@@ -1,0 +1,3 @@
+This directory will be placed in the PYTHONPATH by the ``setenv`` script.
+By default, it contains just ``djangosite`` which is where your Django project lives.
+You may place other modules/packages here, especially those that aren't easy_install-able.

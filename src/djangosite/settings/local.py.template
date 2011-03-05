@@ -1,0 +1,27 @@
+from .default import *
+
+DEBUG = True
+TEMPLATE_DEBUG = True
+
+CACHE_BACKEND = 'locmem://'
+
+# DELETE_FROM_HERE_AFTER_GENERATION
+if SECRET_KEY == 'PLEASE GENERATE ONE':
+    import os
+    thisfile = __file__[:-1] if __file__.endswith('pyc') else __file__
+    path = os.path.join(os.path.dirname(thisfile), '..', '..', '..', 'bin', 'gen_secret_key')
+    execfile(path, locals())
+    secret_key = write_secret_key(thisfile) # overwrite me
+    SECRET_KEY = secret_key
+    print >> sys.stderr, "generating SECRET_KEY (and writing to %s)" % __file__
+# DELETE_TO_HERE_AFTER_GENERATION
+
+
+DATABASES = {
+    'default': {
+        'NAME': 'dev.db',
+        'ENGINE': 'django.db.backends.sqlite3', # Either 'django.db.backends.postgresql_psycopg2', 'django.db.backends.mysql' or 'django.db.backends.sqlite3'.
+        # 'USER': 'myusername', # Your database username (not used for SQLite).
+        # 'PASSWORD': 's3krit', # Your database password (not used for SQLite).
+    }
+}

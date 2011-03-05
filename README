@@ -1,0 +1,20 @@
+Django Quickie Project (Replace this with your project name)
+============================================================
+
+
+Getting Started
+^^^^^^^^^^^^^^^
+
+# On fresh check out, type:
+$ bin/bootstrap
+
+.. grind grind ..
+
+# You should be all good to go now!
+# activate the virtualenv and set up a couple of environment variables
+$ . setenv
+
+
+# After which, each time you wish to work on the project,
+# just do the same as above, i.e.
+$ . setenv
