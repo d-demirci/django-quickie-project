@@ -27,6 +27,14 @@
 
   <!-- CSS : implied media="all" -->
   <link rel="stylesheet" href="{{ MEDIA_URL }}chrome/css/style.css?v=2">
+  <link rel="stylesheet" href="{{ MEDIA_URL }}chrome/1140/1140.css" type="text/css" media="screen">
+  <!-- Make minor type adjustments for 1024 monitors -->
+  <link rel="stylesheet" href="{{ MEDIA_URL }}chrome/1140/smallerscreen.css" media="only screen and (max-width: 1023px)">
+  <!-- Resets grid for mobile -->
+  <link rel="stylesheet" href="{{ MEDIA_URL }}chrome/1140/mobile.css" media="handheld, only screen and (max-width: 767px)">
+  <!-- Put your layout here -->
+  <link rel="stylesheet" href="{{ MEDIA_URL }}chrome/1140/layout.css" type="text/css" media="screen">
+
 
   <!-- Uncomment if you are specifically targeting less enabled mobile browsers
   <link rel="stylesheet" media="handheld" href="{{ MEDIA_URL }}chrome/css/handheld.css?v=2">  -->
@@ -39,22 +47,47 @@
 </head>
 
 <body>{% block html_body %}
-  <div id="container">
+<div class="container">
 {% block content %}
-{% block header %}
-    <header>
 
+{% block header %}
+	<header>
+		<nav id="top-nav">
+			<ul>  
+				<li><a href="{% url homepage %}">Home</a></li>
+				<li>
+					<a href="#" title="More about">About
+					<ul>
+						<li><a href="{% url view_page_sub "about" "quickie" %}">Quickie</a></li>
+					</ul>
+				</li>
+			</ul>
+		</nav>
     </header>
 {% endblock header %}
     
-    <div id="main">
+	<div id="main">
 {% block innercontent %}
+		<div class="row">
+			<div class="threecol">
+				<p>Three columns</p>
+			</div>
+			<div class="threecol">
+				<p>Three columns</p>
+			</div>
+			<div class="threecol">
+				<p>Three columns</p>
+			</div>
+			<div class="threecol last">
+				<p>Three columns</p>
+			</div>
+		</div>
 {% endblock innercontent %}
-    </div>
+	</div>
     
 {% block footer %}
-    <footer>
-    </footer>
+	<footer>
+	</footer>
 {% endblock footer %}
 
 {% endblock content %}
