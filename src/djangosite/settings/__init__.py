@@ -1,5 +1,12 @@
 from .local import *
-import sys
+
+### uncomment below if you want compatibility with some apps that expect ``CACHE_BACKEND`` to be there
+#from . import utils
+#import django
+#
+#if django.get_version() > '1.3':
+#    if 'CACHE_BACKEND' not in locals() and 'CACHES' in locals() and 'default' in CACHES:
+#        CACHE_BACKEND = utils.convert_cache(CACHES['default'])
 
 if DEBUG:
     INSTALLED_APPS += (

@@ -22,5 +22,5 @@ PYTHONPATH=$PROJ_BASE/src
 PS1="[$LABEL]"`echo $PS1 | sed -e 's/^(venv)//'`" "
 
 if [ "x$1" != "x" ]; then
-	exec $*
+	exec "$@"
 fi

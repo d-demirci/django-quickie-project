@@ -3,7 +3,12 @@ from .default import *
 DEBUG = True
 TEMPLATE_DEBUG = True
 
-CACHE_BACKEND = 'locmem://'
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-snowflake'
+    }
+}
 
 # DELETE_FROM_HERE_AFTER_GENERATION
 if SECRET_KEY == 'PLEASE GENERATE ONE':

@@ -1,0 +1,24 @@
+#!/bin/sh
+
+if [ "x$1" = "x" ]; then
+	echo "Usage: $0 <destdir>"
+	exit 1
+fi
+
+dest="$1"
+
+if [ -e "$dest" ]; then
+	echo "directory '$dest' exists"
+	exit 1
+fi
+
+mkdir "$dest" || exit "cannot mkdir"
+
+src=`dirname $0`
+tar -C "$src" \
+	--exclude instantiate \
+	--exclude venv \
+	--exclude .git \
+	--exclude src/djangosite/settings/local.py \
+	--exclude src/djangosite/settings/local.pyc \
+	-cf - . | tar -C "$dest" -xf -
