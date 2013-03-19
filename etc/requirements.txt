@@ -1,10 +1,11 @@
-Django==1.4
-django-debug-toolbar>=0.9.4
-django-extensions>=0.6
-gunicorn>=0.14.3
+Django==1.5
+django-extensions==1.1.1
+gunicorn>=0.17.2
 ipdb
 ipython
 
+# django-debug-toolbar>=0.9.4
+# django-admin-tools==0.5.1
 # BeautifulSoup==3.2.1
 # python-memcached
 # South>=0.7.5
