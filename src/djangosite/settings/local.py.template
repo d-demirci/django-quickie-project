@@ -24,7 +24,7 @@ if SECRET_KEY == 'PLEASE GENERATE ONE':
 
 DATABASES = {
     'default': {
-        'NAME': 'dev.db',
+        'NAME': PROJECT_ROOT + '/dev.db',
         'ENGINE': 'django.db.backends.sqlite3', # Either 'django.db.backends.postgresql_psycopg2', 'django.db.backends.mysql' or 'django.db.backends.sqlite3'.
         # 'USER': 'myusername', # Your database username (not used for SQLite).
         # 'PASSWORD': 's3krit', # Your database password (not used for SQLite).

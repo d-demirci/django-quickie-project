@@ -9,19 +9,26 @@ from .local import *
 #        CACHE_BACKEND = utils.convert_cache(CACHES['default'])
 
 if DEBUG:
-    INSTALLED_APPS += (
-        'debug_toolbar',
-        #'devserver',
-    )
+    HAS_DEBUG_TOOLBAR = False
+    try:
+        import debug_toolbar
+        HAS_DEBUG_TOOLBAR = True
+    except ImportError:
+        pass
 
-    DEBUG_TOOLBAR_CONFIG = {
-        'INTERCEPT_REDIRECTS': False,
-        'DEBUG_TOOLBAR_MEDIA_URL': '_debugtoolbar_media_/', # avoid conflict with werkzeug debugger url
-    }
+    if HAS_DEBUG_TOOLBAR:
+        INSTALLED_APPS += (
+            #'debug_toolbar',
+        )
 
-    MIDDLEWARE_CLASSES += (
-        'debug_toolbar.middleware.DebugToolbarMiddleware',
-    )
+        DEBUG_TOOLBAR_CONFIG = {
+            'INTERCEPT_REDIRECTS': False,
+            'DEBUG_TOOLBAR_MEDIA_URL': '_debugtoolbar_media_/', # avoid conflict with werkzeug debugger url
+        }
+
+        MIDDLEWARE_CLASSES += (
+            'debug_toolbar.middleware.DebugToolbarMiddleware',
+        )
 
 
     DEVSERVER_MODULES = (
