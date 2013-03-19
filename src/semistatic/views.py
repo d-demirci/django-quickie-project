@@ -1,6 +1,6 @@
 from django.http import Http404
 from django.template import TemplateDoesNotExist
-from django.views.generic.simple import direct_to_template
+from django.views.generic import TemplateView
 
 
 def page(request, page, directory=''):
@@ -9,6 +9,6 @@ def page(request, page, directory=''):
     if not page:
         page = 'index'
     try:
-        return direct_to_template(request, template="%s%s.html" % (directory, page))
+        return TemplateView.as_view(template="%s%s.html" % (directory, page))(request)
     except TemplateDoesNotExist:
         raise Http404()

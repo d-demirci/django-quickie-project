@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.conf import settings
 
 urlpatterns = []
@@ -13,6 +13,11 @@ if 'django.contrib.admin' in settings.INSTALLED_APPS:
 
     urlpatterns += patterns('',
         (r'^admin/', include(admin.site.urls)),
+    )
+
+if 'admin_tools' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^admin_tools/', include('admin_tools.urls')),
     )
 
 ### Media to be served in DEBUG mode
