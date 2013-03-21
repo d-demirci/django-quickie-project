@@ -1,7 +1,7 @@
 # Django settings for djangosite project.
-import sys, os
+import os
 
-PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
 
 DEBUG = True
@@ -69,8 +69,8 @@ STATIC_URL = '/static/'
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
+    os.path.abspath(os.path.join(PROJECT_ROOT, 'assets')),
 )
 
 # List of finder classes that know how to find static files in

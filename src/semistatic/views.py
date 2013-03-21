@@ -9,6 +9,6 @@ def page(request, page, directory=''):
     if not page:
         page = 'index'
     try:
-        return TemplateView.as_view(template="%s%s.html" % (directory, page))(request)
+        return TemplateView.as_view(template_name="%s%s.html" % (directory, page))(request)
     except TemplateDoesNotExist:
         raise Http404()
