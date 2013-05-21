@@ -1,12 +1,12 @@
-Django==1.5
+Django==1.5.1
 django-extensions==1.1.1
 gunicorn>=0.17.2
 ipdb
 ipython
 
 ## For IPython Notebook
-tornado
-pyzmq
+#tornado
+#pyzmq
 
 # django-debug-toolbar>=0.9.4
 # django-admin-tools==0.5.1

@@ -5,20 +5,20 @@ DSITE="src/djangosite"
 
 if [ ! -e venv ]; then
 	echo "==> Creating virtualenv"
-	virtualenv --no-site-packages venv
+	virtualenv --no-site-packages venv || exit 3
 fi
 
 . setenv
 
 echo "==> Installing packages"
-pip install -r etc/requirements.txt
+pip install -r etc/requirements.txt || exit 4
 
 if [ ! -e "$DSITE/settings/local.py" ]; then
 	echo "==> Copying local settings"
-	cd src/djangosite
-	cp settings/local.py.template settings/local.py
+	cd "$DSITE"
+	cp settings/local.py.template settings/local.py || exit 5
 	echo "==> Running syncdb"
-	./manage.py syncdb
+	./manage.py syncdb || exit 6
 else
 	echo "~~~ local settings already exists, assuming you're all set up"
 fi
