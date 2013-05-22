@@ -1,0 +1,34 @@
+.navbar-inverse .navbar-inner {
+    background-color: mintcream;
+    background-image: linear-gradient(to bottom,mintcream,lightgrey);
+}
+
+.navbar-inverse .brand,
+.navbar-inverse .nav>li>a {
+    color: #009998;
+}
+
+.navbar-inverse .brand:hover,
+.navbar-inverse .nav>li>a:hover {
+    color: red;
+}
+
+
+
+.warn {
+	background: yellow;
+}
+
+.warn .desc {
+	background: yellow url("../img/exclamation.png") no-repeat;
+	padding-left: 2em;
+	font-weight: bold;
+}
+
+/*@media (min-width: 1200px) {*/
+    /*.sidebar-nav {*/
+        /*position: fixed;*/
+        /*background: lightpink;*/
+        /*width: 27.8%; *//* this is only an approximation. When position:fixed, width in percent is calculated against body instead of the span4 */
+    /*}*/
+/*}*/
