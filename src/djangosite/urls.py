@@ -3,6 +3,14 @@ from django.conf import settings
 
 urlpatterns = []
 
+
+
+if 'userena' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        (r'^accounts/', include('accounts.urls')),
+    )
+
+
 ### Enable admin if installed
 if 'django.contrib.admin' in settings.INSTALLED_APPS:
     from django.contrib import admin

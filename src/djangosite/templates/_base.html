@@ -9,7 +9,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>{% block html_title %}{% endblock %}</title>
         <meta name="description" content="">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 {#		<link rel="stylesheet" href="{{ STATIC_URL }}chrome/css/bootstrap.min.css">#}
         <style>
@@ -38,13 +38,12 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container-fluid">
-                    <a class="brand" href="/">{% block SITE_NAME %}{{ settings.SITE_NAME }}{% endblock %}</a>
+                    <a class="brand" href="/">{% block SITE_NAME %}{{ settings.SITE_NAME|default:"Project Name" }}{% endblock %}</a>
                     <div class="nav-collapse collapse">
-{#                      <p class="navbar-text pull-right">#}
-{#                        <a href="#" class="navbar-link">Username</a> <a href="{% url 'auth_logout' %}">Logout</a> <a#}
-{#                              href="{% url 'auth_login' %}">login</a>#}
-{#                      </p>#}
-{#                      <p class="navbar-text divider-vertical pull-right"></p>#}
+                      {% if settings.INSTALLED_APPS.userena %}
+					    {% include "_navbar_accounts.html" %}
+					  {% endif %}
+
 {% if GOT_SEARCH %}
                       <form class="navbar-search pull-right" action="{% url 'search' %}">
                         <input name="q" type="text" class="search-query" placeholder="Search" autocomplete="off" value="{{ search_query }}" accesskey="/">
@@ -106,7 +105,7 @@
             {% block footer %}
             <hr>
             <footer>
-                <p class="pull-right"><small>&copy; Cloud Registry Pty Ltd 2013</small></p>
+                <p class="pull-right"><small>&copy; Acme Corp 2013</small></p>
                 <ul class="inline">
                   <li>
                       <a href="{% url 'view_page' page='terms' %}">{% trans "Terms of Service" %}</a>
@@ -118,7 +117,7 @@
             </footer>
             {% endblock %}
 
-        </div> <!-- /container -->
+        </div> <!-- /container-fluid -->
         {% endblock container %}
 
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

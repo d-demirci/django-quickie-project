@@ -1,8 +1,14 @@
 from .default import *
 import sys
 
+SITE_NAME = 'Project'
+
 DEBUG = True
 TEMPLATE_DEBUG = True
+
+# useful during development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 
 CACHES = {
     'default': {

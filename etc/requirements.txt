@@ -4,6 +4,10 @@ gunicorn>=0.17.2
 ipdb
 ipython
 
+django-guardian==1.1.0.beta
+django-userena==1.2.0
+easy-thumbnails==1.2
+
 ## For IPython Notebook
 #tornado
 #pyzmq

@@ -1,0 +1,21 @@
+{% load i18n %}
+{% if request.user.is_authenticated %}
+  <p class="navbar-text pull-right">
+    <a href="{% url 'userena_signout'%}" class="navbar-link">{% trans "logout" %}</a>
+  </p>
+  <p class="navbar-text divider-vertical pull-right"></p>
+  <p class="navbar-text pull-right">{{ request.user }}</p>
+{% else %}
+    {% if not in_accounts_signin %}
+        <p class="navbar-text pull-right">
+            <a href="{% url 'userena_signin' %}">Sign in</a>
+        </p>
+        <p class="navbar-text divider-vertical pull-right"></p>
+    {% endif %}
+    {% if not in_accounts_signup %}
+        <p class="navbar-text pull-right">
+            <a href="{% url 'userena_signup' %}">Sign up</a>
+        </p>
+        <p class="navbar-text divider-vertical pull-right"></p>
+    {% endif %}
+{% endif %}

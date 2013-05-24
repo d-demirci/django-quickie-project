@@ -116,6 +116,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.static',
     'django.core.context_processors.request',
+    'djangosite.context_processors.export_settings',
 )
 
 
@@ -131,6 +132,12 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django_extensions',
 
+    # for django-userena
+    'easy_thumbnails',
+    'guardian',
+    'userena',
+
+    # basic apps
     'semistatic',
 )
 
@@ -163,3 +170,60 @@ LOGGING = {
         },
     }
 }
+
+
+# used by djangosite.context_processors.export_settings context processor to
+# expose the "settings" variable to templates with the following keys
+EXPORT_SETTINGS = {
+    'DEBUG': True,
+    'SITE_NAME': True,
+    'INSTALLED_APPS': lambda x: dict(zip(x, range(len(x)))),
+}
+
+
+############################## USERENA SETTINGS ##############################
+# more secure default
+USERENA_DISABLE_PROFILE_LIST = True
+USERENA_FORBIDDEN_USERNAMES = set([
+    ### userena defaults ###
+    'signup',
+    'signout',
+    'signin',
+    'activate',
+    'me',
+    'password',
+
+    ### unix users / big shots ###
+    'root',
+    # 'daemon', # no harm
+    'god',
+    # 'bin',    # no harm
+    'sys',
+    'sysadmin',
+    'admin',
+    # 'nobody', # no harm
+
+    ### rfc2142 ###
+    'info',
+    'marketing',
+    'sales',
+    'support',
+    'abuse',
+    'noc',
+    'security',
+    'postmaster',
+    'hostmaster',
+    'webmaster',
+    'usenet',
+    'news',
+    'www',
+    # 'uucp', # no harm
+    'ftp',
+    'list',
+
+    ### others that we may want to use as URLs (in case we want profile URLs to be http://domain/username)
+    'help',
+    'about',
+    'contact',
+    'categories',
+])

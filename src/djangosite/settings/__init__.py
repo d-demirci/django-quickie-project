@@ -50,3 +50,37 @@ if DEBUG:
             'devserver.middleware.DevServerMiddleware',
         )
 
+
+
+if 'userena' in INSTALLED_APPS:
+    # for django-guardian
+    ANONYMOUS_USER_ID = -1
+
+    AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+    # insert our local 'accounts' before 'userena' so that we can override the templates
+    apps_list = list(INSTALLED_APPS)
+    apps_list.insert(apps_list.index('userena'), 'accounts')
+    INSTALLED_APPS = tuple(apps_list)
+
+
+    AUTHENTICATION_BACKENDS = (
+        'userena.backends.UserenaAuthenticationBackend',
+        'guardian.backends.ObjectPermissionBackend',
+        'django.contrib.auth.backends.ModelBackend',
+    )
+
+
+    MIDDLEWARE_CLASSES += (
+        # should be at the end (according to django-userena docs)
+        'userena.middleware.UserenaLocaleMiddleware',
+    )
+
+
+    LOGIN_REDIRECT_URL = '/accounts/%(username)s/'
+    LOGIN_URL = '/accounts/signin/'
+    LOGOUT_URL = '/accounts/signout/'
+
+    # override template names
+    USERENA_PROFILE_DETAIL_TEMPLATE = 'accounts/profile_detail.html'
+    USERENA_PROFILE_LIST_TEMPLATE = 'accounts/profile_list.html'

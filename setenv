@@ -12,7 +12,9 @@ if [ -z "$PROJ_BASE" -o "$PROJ_BASE" != "$basedir" ]; then
 	PROJ_BASE="$basedir"
 	export PROJ_BASE
 
-	LABEL=`(basename "$PROJ_BASE")`
+	if [ "x$LABEL" != "x" ]; then
+		LABEL=`(basename "$PROJ_BASE")`
+	fi
 
 	PATH=$PROJ_BASE/bin:$PATH
 	export PATH
