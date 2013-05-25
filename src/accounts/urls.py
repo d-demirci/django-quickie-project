@@ -7,12 +7,21 @@ from django.conf import settings
 from userena import views as userena_views
 from userena import settings as userena_settings
 
+# use captcha-enabled signup form?
+from userena.forms import SignupForm
+SignupFormCls = SignupForm
+if 'captcha' in settings.INSTALLED_APPS:
+    from accounts.forms import CaptchaSignupForm
+    SignupFormCls = CaptchaSignupForm
+
+
 urlpatterns = patterns('',
     # Signup, signin and signout
     url(r'^signup/$',
        userena_views.signup,
        name='userena_signup',
        kwargs=dict(template_name='accounts/signup_form.html',
+                   signup_form=SignupFormCls,
                    extra_context={'in_accounts_signup': True})),
     url(r'^signin/$',
        userena_views.signin,

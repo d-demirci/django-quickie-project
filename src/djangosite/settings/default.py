@@ -136,6 +136,7 @@ INSTALLED_APPS = (
     'easy_thumbnails',
     'guardian',
     'userena',
+    'captcha', # optional
 
     # basic apps
     'semistatic',

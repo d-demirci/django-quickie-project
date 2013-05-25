@@ -4,9 +4,13 @@ gunicorn>=0.17.2
 ipdb
 ipython
 
+## userena needs django-guardian and easy-thumbnails
 django-guardian==1.1.0.beta
 django-userena==1.2.0
 easy-thumbnails==1.2
+
+## optional
+django-simple-captcha==0.3.7
 
 ## For IPython Notebook
 #tornado

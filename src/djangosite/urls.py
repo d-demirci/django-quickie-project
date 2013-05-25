@@ -11,6 +11,12 @@ if 'userena' in settings.INSTALLED_APPS:
     )
 
 
+if 'captcha' in settings.INSTALLED_APPS:
+    urlpatterns += patterns('',
+        url(r'^captcha/', include('captcha.urls')),
+    )
+
+
 ### Enable admin if installed
 if 'django.contrib.admin' in settings.INSTALLED_APPS:
     from django.contrib import admin
