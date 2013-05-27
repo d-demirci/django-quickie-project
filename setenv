@@ -12,7 +12,7 @@ if [ -z "$PROJ_BASE" -o "$PROJ_BASE" != "$basedir" ]; then
 	PROJ_BASE="$basedir"
 	export PROJ_BASE
 
-	if [ "x$LABEL" != "x" ]; then
+	if [ "x$LABEL" = "x" ]; then
 		LABEL=`(basename "$PROJ_BASE")`
 	fi
 
@@ -33,6 +33,7 @@ if [ -z "$PROJ_BASE" -o "$PROJ_BASE" != "$basedir" ]; then
 	fi
 fi
 
+alias cdproj="cd $PROJ_BASE"
 
 if [ "x$1" != "x" ]; then
 	exec "$@"
