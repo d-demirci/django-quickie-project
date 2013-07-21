@@ -1,6 +1,6 @@
 Django==1.5.1
 django-extensions==1.1.1
-gunicorn>=0.17.2
+gunicorn
 ipdb
 ipython
 
@@ -22,3 +22,12 @@ django-simple-captcha==0.3.7
 # python-memcached
 # pylibmc
 # South>=0.7.5
+
+
+## debugging
+
+# dogslow - watchdog middleware class that logs tracebacks of slow requests
+# https://pypi.python.org/pypi/dogslow
+#dogslow
+## or tipper (to allow non-wsgi apps to dump stacktraces on SIGUSR1)
+# https://bitbucket.org/brodie/tipper

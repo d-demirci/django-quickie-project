@@ -143,14 +143,21 @@ INSTALLED_APPS = (
 )
 
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
+LOG_FILE = os.path.abspath(os.path.join(PROJECT_ROOT, '..', '..', 'log', 'site.log'))
+
+# See http://docs.djangoproject.com/en/dev/topics/logging and
+# http://docs.python.org/2/library/logging.config.html#configuration-dictionary-schema
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
+    'formatters': {
+        'default': {
+            'format': '%(asctime)s %(levelname)s %(name)s %(module)s %(message)s'
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
     'filters': {
         'require_debug_false': {
             '()': 'django.utils.log.RequireDebugFalse'
@@ -161,7 +168,20 @@ LOGGING = {
             'level': 'ERROR',
             'filters': ['require_debug_false'],
             'class': 'django.utils.log.AdminEmailHandler'
-        }
+        },
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'simple'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.TimedRotatingFileHandler',
+            'filename': LOG_FILE,
+            'when': 'midnight',
+            'formatter': 'default',
+            'filters': ['require_debug_false']
+        },
     },
     'loggers': {
         'django.request': {
@@ -169,6 +189,10 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+        'djangosite': {
+            'handlers': ['file', 'console'],
+            'level': 'INFO',
+        }
     }
 }
 

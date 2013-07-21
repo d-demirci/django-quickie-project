@@ -51,6 +51,34 @@ if DEBUG:
         )
 
 
+    import sys
+    if 'shell' in sys.argv or 'shell_plus' in sys.argv:
+        import warnings
+
+        #ignore the following warnings when using ipython:
+        # .../django/db/backends/sqlite3/base.py:53: RuntimeWarning:
+        # SQLite received a naive datetime (...) while time zone support is active
+        warnings.filterwarnings("ignore", category=RuntimeWarning,
+                                module='django.db.backends.sqlite3.base')
+
+        # In order to ignore the following warning, we can't just use filterwarnings as above
+        # (possible cause is that IPython inserts a "default" warningsh filter action for DeprecationWarning )
+        # .../IPython/frontend/terminal/embed.py:239: DeprecationWarning:
+        # With-statements now directly support multiple context managers
+        warnings.filterwarnings("ignore", category=DeprecationWarning,
+                                module='IPython.frontend', append=0)
+
+        # so we resort to monkey patching
+
+        # django replaces warnings.showwarning with logging._showwarning, so we patch that instead
+        import logging
+        _showwarning = logging._showwarning
+        def customwarn(message, category, filename, lineno, file=None, line=None):
+            if not (category == DeprecationWarning and 'IPython/frontend/terminal/embed.py' in filename):
+                _showwarning(message, category, filename, lineno, file, line)
+
+        logging._showwarning = customwarn
+
 
 if 'userena' in INSTALLED_APPS:
     # for django-guardian
