@@ -56,8 +56,8 @@ urlpatterns += patterns('',
 ### Fall back to semistatic pages
 urlpatterns += patterns('',
     # install up to two levels
-    url(r'^(?P<directory>\w+)/(?:(?P<page>\w+)/)?$', 'semistatic.views.page', name='view_page_sub'),
-    url(r'^(?P<page>\w+)/$', 'semistatic.views.page', name='view_page', kwargs={'directory': ''}),
+    url(r'^(?P<directory>[a-zA-Z0-9][\w\-]*)/(?:(?P<page>[a-zA-Z0-9][\w\-]*)/)?$', 'semistatic.views.page', name='view_page_sub'),
+    url(r'^(?P<page>[a-zA-Z0-9][\w\-]*)/$', 'semistatic.views.page', name='view_page', kwargs={'directory': ''}),
 )
 
 
