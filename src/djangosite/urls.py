@@ -36,11 +36,9 @@ if 'admin_tools' in settings.INSTALLED_APPS:
 
 ### Media to be served in DEBUG mode
 if settings.DEBUG:
-    urlpatterns += patterns('',
-        url(r'^%s(?P<path>.*)$' % settings.MEDIA_URL[1:], 'django.views.static.serve', {
-            'document_root': settings.MEDIA_ROOT,
-        }),
-    )
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 
 ### Root and other important URLs
