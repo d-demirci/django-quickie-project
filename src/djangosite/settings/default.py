@@ -134,10 +134,10 @@ INSTALLED_APPS = (
     'django_extensions',
 
     # for django-userena
-    'easy_thumbnails',
-    'guardian',
-    'userena',
-    'captcha', # optional
+    #'easy_thumbnails',
+    #'guardian',
+    #'userena',
+    #'captcha', # optional
 
     # basic apps
     'semistatic',

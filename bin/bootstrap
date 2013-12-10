@@ -17,6 +17,7 @@ if [ ! -e "$DSITE/settings/local.py" ]; then
 	echo "==> Copying local settings"
 	cd "$DSITE"
 	cp settings/local.py.template settings/local.py || exit 5
+	cd ../..
 	echo "==> Running syncdb"
 	./manage.py syncdb || exit 6
 else
