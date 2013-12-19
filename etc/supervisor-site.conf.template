@@ -1,0 +1,10 @@
+[program:project]
+command=/path/to/project/venv/bin/gunicorn -b 127.0.0.1:8111 djangosite.wsgi:application
+directory=/path/to/project/src
+environment=PYTHONPATH="/path/to/project/src"
+user=nobody
+autostart=true
+autorestart=true
+redirect_stderr=true
+stdout_logfile=/var/log/supervisor/project.log
+stderr_logfile=/var/log/supervisor/project.log
